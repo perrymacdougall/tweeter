@@ -2,6 +2,7 @@ section.new-tweet{
   background-color: #eaeaea;
   border: 1px solid black;
   border-radius: 15px;
+  margin-bottom: 2em;
   padding: 2em;
   position: relative;
   width: 100%;
@@ -34,4 +35,8 @@ section.new-tweet h2 {
   margin-top: 0;
   border-bottom: 1px solid black;
   padding: 1px;
+}
+
+.red-text {
+  color: red;
 }

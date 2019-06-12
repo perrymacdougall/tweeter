@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/articles.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+    <script type="text/javascript" src="/scripts/utilities.js"></script>
   </head>
 
   <body>
@@ -40,6 +41,21 @@
           <input type="submit" value="Tweet">
           <span class="counter">140</span>
         </form>
+      </section>
+
+      <section id="tweet-container">
+        <article class="tweet">
+          <header class="clearfix">
+            <img src="https://www.fillmurray.com/80/80" alt="">
+            <h2>Fill Murray</h2>
+            <h3>@MrMurray</h3>
+          </header>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem sequi aperiam numquam fugit ad, sit dolore corporis nesciunt autem, asperiores soluta eaque fugiat ex itaque quidem nihil quae adipisci voluptates, quam dicta perferendis officiis?</p>
+          <footer class="clearfix">
+            <p>footer text goes here</p>
+            <img class="icons" src="images/icons.png" alt="social media icons">
+          </footer>
+        </article>
       </section>
     </main>
 

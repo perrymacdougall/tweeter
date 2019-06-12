@@ -1,0 +1,65 @@
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+article.tweet {
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 2em;
+}
+
+article.tweet:hover .icons {
+  opacity: 1;
+}
+
+article.tweet header img {
+  border-radius: 10px;
+  float: left;
+  margin: 10px;
+}
+
+article.tweet header {
+  background-color: #eaeaea;
+  position: relative;
+}
+
+article.tweet header h2 {
+  display: inline-block;
+  font-size: 1em;
+  position: absolute;
+}
+
+article.tweet header h3 {
+  display: inline-block;
+  font-size: 0.5em;
+  margin: 10px;
+  position: absolute;
+  right: 0;
+}
+
+article.tweet p {
+  margin: 0;
+  padding: 1em;
+}
+
+article.tweet footer {
+  border-top: 1px solid black;
+}
+
+article.tweet footer p {
+  padding: 1em;
+  float: left;
+}
+
+article.tweet footer img {
+  float: right;
+  width: 80px;
+  margin: 8px;
+}
+
+.icons {
+  opacity: 0;
+}

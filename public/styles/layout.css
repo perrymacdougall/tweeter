@@ -27,7 +27,7 @@ body {
 
 main {
   background-color: #ffffff;
-  height: 100vh;
+  /*height: 100%;*/
   width: 450px;
   margin: auto;
   padding: 120px 60px 60px 60px;
