@@ -5,6 +5,24 @@
  */
 $(document).ready(function() {
 
+  let $charCount = 140;
+
+  // Tracking character count
+  $('.new-tweet textarea').on('input', function() {
+    $charCount = 140 - $(this).val().length;
+
+    // Update the char counter
+    $(this).siblings('.counter').text($charCount);
+
+    // Changing counter color
+    if ($charCount < 0) {
+      $(this).siblings('.counter').addClass('red-text');
+    } else if ($charCount > 0) {
+      $(this).siblings('.counter').removeClass('red-text');
+    }
+
+  });
+
   // Building my tweet function
   function createTweetElement(data) {
 
@@ -31,7 +49,6 @@ $(document).ready(function() {
 
   // Rendering tweets dynamically
   function renderTweets(tweets) {
-    // Loop through tweets
     for (let x in tweets) {
       let result = createTweetElement(tweets[x]);
       $('#tweet-container').prepend(result);
@@ -42,23 +59,31 @@ $(document).ready(function() {
   $('#new-tweet-form').on('submit', function(event) {
     event.preventDefault();
     let $tweetText = $(this).serialize();
+    console.log($charCount);
 
-    $.ajax({
-      url: '/tweets',
-      method: 'POST',
-      data: $tweetText
-    })
-
-    // Loading new tweets
-    function loadTweets(){
+    // Form validation. If it passes, submits the AJAX request
+    if ($charCount === 140) {
+      alert("Sorry, it seems I didn't get your tweet!");
+    } else if ($charCount < 0) {
+      alert("Sorry, your tweet is too long. Less is more!")
+    } else {
       $.ajax({
         url: '/tweets',
-        method: 'GET',
-        success: renderTweets
+        method: 'POST',
+        data: $tweetText
       })
-    }
 
-    loadTweets();
+      // Loading new tweets
+      function loadTweets(){
+        $.ajax({
+          url: '/tweets',
+          method: 'GET',
+          success: renderTweets
+        })
+      }
+
+      loadTweets();
+    }
 
   });
 
