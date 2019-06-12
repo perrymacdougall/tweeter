@@ -76,6 +76,7 @@ $(document).ready(function() {
     return $tweet;
   };
 
+  // Rendering tweets dynamically
   function renderTweets(tweets) {
     // Loop through tweets
     for (let x in tweets) {
@@ -84,9 +85,21 @@ $(document).ready(function() {
     }
   }
 
-  renderTweets(data);
 
-  // Test / driver code (temporary)
-  // console.log($tweet); // to see what it looks like
+
+  // Switching form submission to AJAX
+  $('#new-tweet-form').on('submit', function(event) {
+    event.preventDefault();
+    let $tweetText = $(this).serialize();
+
+    $.ajax({
+      url:'/tweets',
+      method: 'POST',
+      data: $tweetText
+    })
+
+  });
+
+
 
 });
