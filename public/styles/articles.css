@@ -4,6 +4,10 @@
   clear: both;
 }
 
+section.new-tweet {
+  display: none;
+}
+
 article.tweet {
   border: 1px solid black;
   border-radius: 10px;

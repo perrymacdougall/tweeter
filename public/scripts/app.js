@@ -7,6 +7,12 @@ $(document).ready(function() {
 
   let $charCount = 140;
 
+  // Toggling 'new tweet' form
+  $('#compose').on('click', function() {
+    $('.new-tweet').slideToggle();
+    $('.new-tweet textarea').select();
+  });
+
   // Tracking character count
   $('.new-tweet textarea').on('input', function() {
     $charCount = 140 - $(this).val().length;

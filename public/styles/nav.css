@@ -20,3 +20,18 @@
   font-size: 2rem;
   line-height: 80px;
 }
+
+#nav-bar button {
+  float: right;
+  border-radius: 10px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+#nav-bar button:hover {
+  background: silver;
+}
+
+.fa-edit {
+  margin-right: 5px;
+}
