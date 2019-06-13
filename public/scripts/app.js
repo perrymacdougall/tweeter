@@ -34,8 +34,6 @@ $(document).ready(function() {
     $('.err').hide();
   });
 
-  $('.')
-
   // Building my tweet function
   function createTweetElement(data) {
     // Figuring out the time
