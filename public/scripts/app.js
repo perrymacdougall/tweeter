@@ -7,12 +7,6 @@ $(document).ready(function() {
 
   let $charCount = 140;
 
-  // Toggling 'new tweet' form
-  $('#compose').on('click', function() {
-    $('.new-tweet').slideToggle();
-    $('.new-tweet textarea').select();
-  });
-
   // Tracking character count
   $('.new-tweet textarea').on('input', function() {
     $charCount = 140 - $(this).val().length;
@@ -27,6 +21,17 @@ $(document).ready(function() {
       $(this).siblings('.counter').removeClass('red-text');
     }
 
+  });
+
+  // Toggling 'new tweet' form
+  $('#compose').on('click', function() {
+    $('.new-tweet').slideToggle();
+    $('.new-tweet textarea').select();
+  });
+
+  // Clearing errors
+  $('.new-tweet textarea').on('focus', function() {
+    $('.err').hide();
   });
 
   // Building my tweet function
@@ -65,13 +70,12 @@ $(document).ready(function() {
   $('#new-tweet-form').on('submit', function(event) {
     event.preventDefault();
     let $tweetText = $(this).serialize();
-    console.log($charCount);
 
     // Form validation. If it passes, submits the AJAX request
     if ($charCount === 140) {
-      alert("Sorry, it seems I didn't get your tweet!");
+      $('<p>').addClass('err').text('Sorry, I didn\'t hear your tweet!').insertAfter('#text-field');
     } else if ($charCount < 0) {
-      alert("Sorry, your tweet is too long. Less is more!")
+      $('<p>').addClass('err').addClass('err').text('Sorry, your tweet was too long. Less is more!').insertAfter('#text-field');
     } else {
       $.ajax({
         url: '/tweets',
@@ -92,6 +96,8 @@ $(document).ready(function() {
     }
 
   });
+
+
 
 
 });

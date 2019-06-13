@@ -40,3 +40,9 @@ section.new-tweet h2 {
 .red-text {
   color: red;
 }
+
+.err {
+  font-size: 12px;
+  color: red;
+  margin: 0 0 12px 0;
+}
