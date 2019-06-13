@@ -31,8 +31,10 @@ $(document).ready(function() {
 
   // Clearing errors
   $('.new-tweet textarea').on('focus', function() {
-    $('.err').slideToggle();
+    $('.err').hide();
   });
+
+  $('.')
 
   // Building my tweet function
   function createTweetElement(data) {
@@ -47,7 +49,7 @@ $(document).ready(function() {
     let $name = $('<h2>').text(data.user.name);
     let $handle = $('<h3>').text(data.user.handle);
     let $articleText = $('<p>').text(data.content.text)
-    let $footerText = $('<p>').text($timestamp + " seconds ago");
+    let $footerText = $('<p>').text("Published " + $timestamp + " seconds ago");
     let $footerImg = $('<img>').addClass('icons').attr({
       src: "../images/icons.png",
       alt: "social media icons"
@@ -76,9 +78,9 @@ $(document).ready(function() {
 
     // Form validation. If it passes, submits the AJAX request
     if ($charCount === 140) {
-      $('.err').text('Sorry, I didn\'t hear your tweet!');
+      $('err').text('Sorry, I didn\'t hear your tweet!');
     } else if ($charCount < 0) {
-      $('<p>').text('Sorry, your tweet was too long. Less is more!').show();
+      $('<p>').addClass('err').addClass('err').text('Sorry, your tweet was too long. Less is more!').insertAfter('#text-field');
     } else {
       $.ajax({
         url: '/tweets',
