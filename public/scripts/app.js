@@ -36,6 +36,10 @@ $(document).ready(function() {
 
   // Building my tweet function
   function createTweetElement(data) {
+    // Figuring out the time
+    // let currentTime = new Date();
+    let $timestamp = Math.floor((new Date() - data.created_at) / 1000);
+
 
     // Creating all elements
     let $article = $('<article>').addClass('tweet');
@@ -43,7 +47,7 @@ $(document).ready(function() {
     let $name = $('<h2>').text(data.user.name);
     let $handle = $('<h3>').text(data.user.handle);
     let $articleText = $('<p>').text(data.content.text)
-    let $footerText = $('<p>').text(data.created_at);
+    let $footerText = $('<p>').text($timestamp + " seconds ago");
     let $footerImg = $('<img>').addClass('icons').attr({
       src: "../images/icons.png",
       alt: "social media icons"
@@ -60,10 +64,9 @@ $(document).ready(function() {
 
   // Rendering tweets dynamically
   function renderTweets(tweets) {
-    for (let x in tweets) {
-      let result = createTweetElement(tweets[x]);
+      let latestTweet = tweets.length - 1;
+      let result = createTweetElement(tweets[latestTweet]);
       $('#tweet-container').prepend(result);
-    }
   }
 
   // Switching form submission to AJAX
@@ -93,11 +96,10 @@ $(document).ready(function() {
       }
 
       loadTweets();
+      $('#text-field').val("");
+      $charCount = 140;
     }
 
   });
-
-
-
 
 });

@@ -47,6 +47,7 @@ article.tweet header h3 {
 article.tweet p {
   margin: 0;
   padding: 1em;
+  overflow-wrap: break-word;
 }
 
 article.tweet footer {
