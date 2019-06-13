@@ -31,7 +31,7 @@ $(document).ready(function() {
 
   // Clearing errors
   $('.new-tweet textarea').on('focus', function() {
-    $('.err').hide();
+    $('.err').slideToggle();
   });
 
   // Building my tweet function
@@ -73,9 +73,9 @@ $(document).ready(function() {
 
     // Form validation. If it passes, submits the AJAX request
     if ($charCount === 140) {
-      $('<p>').addClass('err').text('Sorry, I didn\'t hear your tweet!').insertAfter('#text-field');
+      $('.err').text('Sorry, I didn\'t hear your tweet!');
     } else if ($charCount < 0) {
-      $('<p>').addClass('err').addClass('err').text('Sorry, your tweet was too long. Less is more!').insertAfter('#text-field');
+      $('<p>').text('Sorry, your tweet was too long. Less is more!').show();
     } else {
       $.ajax({
         url: '/tweets',
