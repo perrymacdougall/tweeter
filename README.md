@@ -18,3 +18,9 @@ This program is an exercise to work on my HTML, CSS, JS, jQuery and AJAX front-e
 - Chance
 - md5
 - MongoDB
+
+## Screenshots
+
+!["Screenshot of main thread"](https://github.com/perrymacdougall/tweeter/blob/master/public/screenshots/home-view-image.png)
+
+!["Screenshot of compose tweet form"](https://github.com/perrymacdougall/tweeter/blob/master/public/screenshots/compose-tweet-image.png)
