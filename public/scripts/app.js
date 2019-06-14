@@ -12,13 +12,13 @@ $(document).ready(function() {
     $charCount = 140 - $(this).val().length;
 
     // Update the char counter
-    $(this).siblings('.counter').text($charCount);
+    $('.counter').text($charCount);
 
     // Changing counter color
     if ($charCount < 0) {
-      $(this).siblings('.counter').addClass('red-text');
+      $('.counter').addClass('red-text');
     } else if ($charCount > 0) {
-      $(this).siblings('.counter').removeClass('red-text');
+      $('.counter').removeClass('red-text');
     }
 
   });
