@@ -109,6 +109,7 @@ $(document).ready(function() {
 
       // Reset the counter
       $charCount = 140;
+      $('.counter').text($charCount);
     }
 
   });
