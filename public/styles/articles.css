@@ -57,6 +57,7 @@ article.tweet footer {
 article.tweet footer p {
   padding: 1em;
   float: left;
+  font-size: 0.75em;
 }
 
 article.tweet footer img {

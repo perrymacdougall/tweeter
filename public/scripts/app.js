@@ -36,9 +36,21 @@ $(document).ready(function() {
 
   // Building my tweet function
   function createTweetElement(data) {
+
     // Figuring out the time
-    // let currentTime = new Date();
-    let $timestamp = Math.floor((new Date() - data.created_at) / 1000);
+    let timeInSeconds = Math.floor((new Date() - data.created_at) / 1000);
+    let timeUnits = "seconds";
+
+    if (timeInSeconds > 60 && timeInSeconds < 3600) {
+      timeInSeconds = Math.floor(timeInSeconds / 60);
+      timeUnits = "minutes";
+    } else if (timeInSeconds > 3600 && timeInSeconds < 86400) {
+      timeInSeconds = Math.floor(timeInSeconds / 3600);
+      timeUnits = "hours";
+    } else if (timeInSeconds > 86400) {
+      timeInSeconds = Math.floor(timeInSeconds / 86400);
+      timeUnits = "days";
+    }
 
 
     // Creating all elements
@@ -47,7 +59,7 @@ $(document).ready(function() {
     let $name = $('<h2>').text(data.user.name);
     let $handle = $('<h3>').text(data.user.handle);
     let $articleText = $('<p>').text(data.content.text)
-    let $footerText = $('<p>').text("Published " + $timestamp + " seconds ago");
+    let $footerText = $('<p>').text("Published " + timeInSeconds + " " + timeUnits + " ago");
     let $footerImg = $('<img>').addClass('icons').attr({
       src: "../images/icons.png",
       alt: "social media icons"
@@ -64,14 +76,16 @@ $(document).ready(function() {
 
   // Rendering tweets dynamically
   function renderTweets(tweets) {
-      let latestTweet = tweets.length - 1;
-      let result = createTweetElement(tweets[latestTweet]);
+    for (let tweet in tweets) {
+      let result = createTweetElement(tweets[tweet]);
       $('#tweet-container').prepend(result);
+    }
   }
 
   // Switching form submission to AJAX
   $('#new-tweet-form').on('submit', function(event) {
     event.preventDefault();
+
     let $tweetText = $(this).serialize();
 
     // Form validation. If it passes, submits the AJAX request
@@ -85,21 +99,27 @@ $(document).ready(function() {
         method: 'POST',
         data: $tweetText
       })
+      .then(function() {
+        $('#tweet-container').empty();
+        loadTweets();
+      })
 
-      // Loading new tweets
-      function loadTweets(){
-        $.ajax({
-          url: '/tweets',
-          method: 'GET',
-          success: renderTweets
-        })
-      }
-
-      loadTweets();
+      // Clear the textarea after submitting
       $('#text-field').val("");
+
+      // Reset the counter
       $charCount = 140;
     }
 
   });
+    // Loading new tweets
+    function loadTweets(){
+      $.ajax({
+        url: '/tweets',
+        method: 'GET',
+        success: renderTweets
+      })
+    }
 
+  loadTweets();
 });
