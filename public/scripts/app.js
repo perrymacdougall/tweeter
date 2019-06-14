@@ -74,7 +74,7 @@ $(document).ready(function() {
 
     // Putting together the DOM structure
     let $header = $('<header>').addClass('clearfix').append($avatar).append($name).append($handle);
-    let $footer = $('<footer>').addClass('clearfix').append($footerText).append($footerImg);
+    let $footer = $('<footer>').append($footerText).append($footerImg);
 
     let $tweet = $article.append($header).append($articleText).append($footer);
 

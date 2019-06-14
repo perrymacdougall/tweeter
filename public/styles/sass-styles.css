@@ -51,20 +51,16 @@ article.tweet p {
   overflow-wrap: break-word;
 }
 
-article.tweet footer {
-  border-top: 1px solid black;
-}
-
 article.tweet footer p {
-  padding: 1em;
-  float: left;
+  /*padding: 1em;*/
   font-size: 0.75em;
 }
 
 article.tweet footer img {
-  float: right;
-  width: 80px;
-  margin: 8px;
+  align-self: center;
+  flex: 0 0 auto;
+  width: 25%;
+  /*margin: 8px;*/
 }
 
 .icons {
@@ -186,7 +182,7 @@ section.new-tweet h2 {
   margin: 0 0 12px 0;
 }
 
-#new-tweet-form div, #nav-bar {
+footer, #new-tweet-form div, #nav-bar {
   display: flex;
   justify-content: space-between;
 }
@@ -200,6 +196,10 @@ section.new-tweet h2 {
   padding: 0 2em;
   opacity: 0.7;
   z-index: 900;
+}
+
+footer {
+  border-top: 1px solid black;
 }
 
 /*# sourceMappingURL=sass-styles.css.map */

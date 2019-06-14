@@ -24,3 +24,8 @@
 #new-tweet-form div {
   @extend %flexbox;
 }
+
+footer {
+  @extend %flexbox;
+  border-top: 1px solid black;
+}
