@@ -25,7 +25,8 @@ $(document).ready(function() {
 
   // Toggling 'new tweet' form
   $('#compose').on('click', function() {
-    $('.new-tweet').slideToggle();
+    $('html').animate({scrollTop: 0}, '300');
+    $('.new-tweet').slideToggle('slow');
     $('.new-tweet textarea').select();
   });
 
@@ -37,17 +38,23 @@ $(document).ready(function() {
   // Building my tweet function
   function createTweetElement(data) {
 
-    // Figuring out the time
     let timeInSeconds = Math.floor((new Date() - data.created_at) / 1000);
     let timeUnits = "seconds";
 
+    // If the tweet is minutes old
     if (timeInSeconds > 60 && timeInSeconds < 3600) {
       timeInSeconds = Math.floor(timeInSeconds / 60);
       timeUnits = "minutes";
     } else if (timeInSeconds > 3600 && timeInSeconds < 86400) {
+      // If the tweet is hours old
       timeInSeconds = Math.floor(timeInSeconds / 3600);
-      timeUnits = "hours";
+      if (timeInSeconds < 2) {
+        timeUnits = "hour";
+      } else {
+        timeUnits = "hours";
+      }
     } else if (timeInSeconds > 86400) {
+      // If the tweet is days old
       timeInSeconds = Math.floor(timeInSeconds / 86400);
       timeUnits = "days";
     }
@@ -90,9 +97,9 @@ $(document).ready(function() {
 
     // Form validation. If it passes, submits the AJAX request
     if ($charCount === 140) {
-      $('err').text('Sorry, I didn\'t hear your tweet!');
+      $('.err').text('Sorry, I didn\'t hear your tweet!').show();
     } else if ($charCount < 0) {
-      $('<p>').addClass('err').addClass('err').text('Sorry, your tweet was too long. Less is more!').insertAfter('#text-field');
+      $('.err').text('Sorry, your tweet was too long. Less is more!').show();
     } else {
       $.ajax({
         url: '/tweets',
@@ -113,14 +120,15 @@ $(document).ready(function() {
     }
 
   });
-    // Loading new tweets
-    function loadTweets(){
-      $.ajax({
-        url: '/tweets',
-        method: 'GET',
-        success: renderTweets
-      })
-    }
+
+  // Loading new tweets
+  function loadTweets(){
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      success: renderTweets
+    })
+  }
 
   loadTweets();
 });
